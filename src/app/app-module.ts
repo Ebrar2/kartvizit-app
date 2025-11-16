@@ -3,19 +3,34 @@ import { BrowserModule, provideClientHydration, withEventReplay } from '@angular
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
+import { Header } from './components/header/header';
+import { About } from './components/about/about';
+import { Home } from './components/home/home';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    App
+    App,
+    Header,
+    About,
+    Home
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatToolbarModule,
+    HttpClientModule
+    
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
-    provideClientHydration(withEventReplay())
+    provideClientHydration(withEventReplay()),
+    {
+      provide:'apiUrl',
+      useValue:'https://demo.limantech.com/cards/public/api'
+    }
   ],
   bootstrap: [App]
 })
